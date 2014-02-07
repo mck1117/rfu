@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace UDPRfu
+namespace DesktopRFU
 {
     /// <summary>
     /// Interaction logic for RFUButton.xaml

@@ -1,14 +1,21 @@
-﻿<Window x:Class="UDPRfu.MainWindow"
+﻿<Window x:Class="DesktopRFU.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:rfu="clr-namespace:UDPRfu"
-        Title="MainWindow" Height="390" Width="630">
+        xmlns:my="clr-namespace:DesktopRFU"
+        Title="MainWindow" Height="300" Width="525"
+        DataContext="{Binding Source={StaticResource Locator}, Path=MainPageViewModel}">
+
     <Grid Background="#303030">
         <Grid.RowDefinitions>
             <RowDefinition Height="100" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         
+        <Grid Grid.Row="0">
+            <TextBlock Text="{Binding LEDHex}" FontSize="24" Margin="12" />
+            
+        </Grid>
+
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
@@ -32,59 +39,59 @@
             </Grid.ColumnDefinitions>
 
             <Grid.Resources>
-                <Style TargetType="rfu:RFUButton">
+                <Style TargetType="my:RFUButton">
                     <Setter Property="Margin" Value="4" />
-                    <Setter Property="RFU" Value="{Binding RFU, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type rfu:MainWindow}}}" />
+                    <Setter Property="RFU" Value="{Binding Path=RFU}" />
                 </Style>
             </Grid.Resources>
 
-            <rfu:RFUButton Grid.Row="0" Grid.Column="0" KeyDownKeyCode="129" Content="M1" />
-            <rfu:RFUButton Grid.Row="1" Grid.Column="0" KeyDownKeyCode="130" Content="AB CLR" />
-            <rfu:RFUButton Grid.Row="2" Grid.Column="0" KeyDownKeyCode="131" Content="AB Back" />
-            <rfu:RFUButton Grid.Row="3" Grid.Column="0" KeyDownKeyCode="132" Content="AB Hold" />
-            <rfu:RFUButton Grid.Row="4" Grid.Column="0" KeyDownKeyCode="133" Content="AB Go" />
+            <my:RFUButton Grid.Row="0" Grid.Column="0" KeyDownKeyCode="129" Content="M1" />
+            <my:RFUButton Grid.Row="1" Grid.Column="0" KeyDownKeyCode="130" Content="AB CLR" />
+            <my:RFUButton Grid.Row="2" Grid.Column="0" KeyDownKeyCode="131" Content="AB Back" />
+            <my:RFUButton Grid.Row="3" Grid.Column="0" KeyDownKeyCode="132" Content="AB Hold" />
+            <my:RFUButton Grid.Row="4" Grid.Column="0" KeyDownKeyCode="133" Content="AB Go" />
 
-            <rfu:RFUButton Grid.Row="0" Grid.Column="2" KeyDownKeyCode="134" Content="Stage" />
-            <rfu:RFUButton Grid.Row="1" Grid.Column="2" KeyDownKeyCode="135" Content="M*" />
-            <rfu:RFUButton Grid.Row="2" Grid.Column="2" KeyDownKeyCode="136" Content="Sub" />
-            <rfu:RFUButton Grid.Row="3" Grid.Column="2" KeyDownKeyCode="137" Content="Time" />
-            <rfu:RFUButton Grid.Row="4" Grid.Column="2" KeyDownKeyCode="138" Content="Track" />
+            <my:RFUButton Grid.Row="0" Grid.Column="2" KeyDownKeyCode="134" Content="Stage" />
+            <my:RFUButton Grid.Row="1" Grid.Column="2" KeyDownKeyCode="135" Content="M*" />
+            <my:RFUButton Grid.Row="2" Grid.Column="2" KeyDownKeyCode="136" Content="Sub" />
+            <my:RFUButton Grid.Row="3" Grid.Column="2" KeyDownKeyCode="137" Content="Time" />
+            <my:RFUButton Grid.Row="4" Grid.Column="2" KeyDownKeyCode="138" Content="Track" />
 
-            <rfu:RFUButton Grid.Row="0" Grid.Column="3" KeyDownKeyCode="139" Content="Blind" />
-            <rfu:RFUButton Grid.Row="1" Grid.Column="3" KeyDownKeyCode="140" Content="S*" />
-            <rfu:RFUButton Grid.Row="2" Grid.Column="3" KeyDownKeyCode="141" Content="Group" />
-            <rfu:RFUButton Grid.Row="3" Grid.Column="3" KeyDownKeyCode="142" Content="Cue" />
-            <rfu:RFUButton Grid.Row="4" Grid.Column="3" KeyDownKeyCode="143" Content="Record" />
+            <my:RFUButton Grid.Row="0" Grid.Column="3" KeyDownKeyCode="139" Content="Blind" />
+            <my:RFUButton Grid.Row="1" Grid.Column="3" KeyDownKeyCode="140" Content="S*" />
+            <my:RFUButton Grid.Row="2" Grid.Column="3" KeyDownKeyCode="141" Content="Group" />
+            <my:RFUButton Grid.Row="3" Grid.Column="3" KeyDownKeyCode="142" Content="Cue" />
+            <my:RFUButton Grid.Row="4" Grid.Column="3" KeyDownKeyCode="143" Content="Record" />
 
-            <rfu:RFUButton Grid.Row="0" Grid.Column="5" KeyDownKeyCode="144" Content="7" />
-            <rfu:RFUButton Grid.Row="1" Grid.Column="5" KeyDownKeyCode="145" Content="4" />
-            <rfu:RFUButton Grid.Row="2" Grid.Column="5" KeyDownKeyCode="146" Content="1" />
-            <rfu:RFUButton Grid.Row="3" Grid.Column="5" KeyDownKeyCode="147" Content="-" />
-            <rfu:RFUButton Grid.Row="4" Grid.Column="5" KeyDownKeyCode="148" Content="Clear" />
+            <my:RFUButton Grid.Row="0" Grid.Column="5" KeyDownKeyCode="144" Content="7" />
+            <my:RFUButton Grid.Row="1" Grid.Column="5" KeyDownKeyCode="145" Content="4" />
+            <my:RFUButton Grid.Row="2" Grid.Column="5" KeyDownKeyCode="146" Content="1" />
+            <my:RFUButton Grid.Row="3" Grid.Column="5" KeyDownKeyCode="147" Content="-" />
+            <my:RFUButton Grid.Row="4" Grid.Column="5" KeyDownKeyCode="148" Content="Clear" />
 
-            <rfu:RFUButton Grid.Row="0" Grid.Column="6" KeyDownKeyCode="149" Content="8" />
-            <rfu:RFUButton Grid.Row="1" Grid.Column="6" KeyDownKeyCode="150" Content="5" />
-            <rfu:RFUButton Grid.Row="2" Grid.Column="6" KeyDownKeyCode="151" Content="2" />
-            <rfu:RFUButton Grid.Row="3" Grid.Column="6" KeyDownKeyCode="152" Content="0" />
-            <rfu:RFUButton Grid.Row="4" Grid.Column="6" KeyDownKeyCode="153" Content="." />
+            <my:RFUButton Grid.Row="0" Grid.Column="6" KeyDownKeyCode="149" Content="8" />
+            <my:RFUButton Grid.Row="1" Grid.Column="6" KeyDownKeyCode="150" Content="5" />
+            <my:RFUButton Grid.Row="2" Grid.Column="6" KeyDownKeyCode="151" Content="2" />
+            <my:RFUButton Grid.Row="3" Grid.Column="6" KeyDownKeyCode="152" Content="0" />
+            <my:RFUButton Grid.Row="4" Grid.Column="6" KeyDownKeyCode="153" Content="." />
 
-            <rfu:RFUButton Grid.Row="0" Grid.Column="7" KeyDownKeyCode="154" Content="9" />
-            <rfu:RFUButton Grid.Row="1" Grid.Column="7" KeyDownKeyCode="155" Content="6" />
-            <rfu:RFUButton Grid.Row="2" Grid.Column="7" KeyDownKeyCode="156" Content="3" />
-            <rfu:RFUButton Grid.Row="3" Grid.Column="7" KeyDownKeyCode="157" Content="+" />
-            <rfu:RFUButton Grid.Row="4" Grid.Column="7" KeyDownKeyCode="158" Content="Enter" />
+            <my:RFUButton Grid.Row="0" Grid.Column="7" KeyDownKeyCode="154" Content="9" />
+            <my:RFUButton Grid.Row="1" Grid.Column="7" KeyDownKeyCode="155" Content="6" />
+            <my:RFUButton Grid.Row="2" Grid.Column="7" KeyDownKeyCode="156" Content="3" />
+            <my:RFUButton Grid.Row="3" Grid.Column="7" KeyDownKeyCode="157" Content="+" />
+            <my:RFUButton Grid.Row="4" Grid.Column="7" KeyDownKeyCode="158" Content="Enter" />
 
-            <rfu:RFUButton Grid.Row="0" Grid.Column="9" KeyDownKeyCode="159" Content="Chan" />
-            <rfu:RFUButton Grid.Row="1" Grid.Column="9" KeyDownKeyCode="160" Content="Thru" />
-            <rfu:RFUButton Grid.Row="2" Grid.Column="9" KeyDownKeyCode="161" Content="And" />
-            <rfu:RFUButton Grid.Row="3" Grid.Column="9" KeyDownKeyCode="162" Content="Except" />
-            <rfu:RFUButton Grid.Row="4" Grid.Column="9" KeyDownKeyCode="163" Content="Rel" />
+            <my:RFUButton Grid.Row="0" Grid.Column="9" KeyDownKeyCode="159" Content="Chan" />
+            <my:RFUButton Grid.Row="1" Grid.Column="9" KeyDownKeyCode="160" Content="Thru" />
+            <my:RFUButton Grid.Row="2" Grid.Column="9" KeyDownKeyCode="161" Content="And" />
+            <my:RFUButton Grid.Row="3" Grid.Column="9" KeyDownKeyCode="162" Content="Except" />
+            <my:RFUButton Grid.Row="4" Grid.Column="9" KeyDownKeyCode="163" Content="Rel" />
 
-            <rfu:RFUButton Grid.Row="0" Grid.Column="10" KeyDownKeyCode="164" Content="Dim" />
-            <rfu:RFUButton Grid.Row="1" Grid.Column="10" KeyDownKeyCode="165" Content="At" />
-            <rfu:RFUButton Grid.Row="2" Grid.Column="10" KeyDownKeyCode="166" Content="Full" />
-            <rfu:RFUButton Grid.Row="3" Grid.Column="10" KeyDownKeyCode="168" Content="Level" />
-            <rfu:RFUButton Grid.Row="4" Grid.Column="10" KeyDownKeyCode="168" Content="FocPoint" />
+            <my:RFUButton Grid.Row="0" Grid.Column="10" KeyDownKeyCode="164" Content="Dim" />
+            <my:RFUButton Grid.Row="1" Grid.Column="10" KeyDownKeyCode="165" Content="At" />
+            <my:RFUButton Grid.Row="2" Grid.Column="10" KeyDownKeyCode="166" Content="Full" />
+            <my:RFUButton Grid.Row="3" Grid.Column="10" KeyDownKeyCode="168" Content="Level" />
+            <my:RFUButton Grid.Row="4" Grid.Column="10" KeyDownKeyCode="168" Content="FocPoint" />
         </Grid>
     </Grid>
 </Window>

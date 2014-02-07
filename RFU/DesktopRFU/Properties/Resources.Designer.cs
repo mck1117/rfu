@@ -8,8 +8,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace UDPRfu.Properties
+namespace DesktopRFU.Properties
 {
+    using System;
 
 
     /// <summary>
@@ -42,9 +43,9 @@ namespace UDPRfu.Properties
         {
             get
             {
-                if ((resourceMan == null))
+                if (object.ReferenceEquals(resourceMan, null))
                 {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("UDPRfu.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DesktopRFU.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

@@ -12,15 +12,28 @@ namespace RFUInterface
         public byte[] Buffer { get; set; }
     }
 
-    interface IRFUDataInterface
+    abstract class RFUDataInterface
     {
-        event EventHandler<RFUDataReceivedEventArgs> RFUDataReceived;
-        int Send(byte[] buffer, int count);
+        public EventHandler<RFUDataReceivedEventArgs> RFUDataReceived;
+        protected byte[] buffer = new byte[512];
+        protected int bufferLength = 0;
+
+        public void Send(byte[] buffer, int count)
+        {
+            Array.Copy(buffer, 0, this.buffer, bufferLength, count);
+            bufferLength += count;
+        }
+
+        public virtual int Flush()
+        {
+            int retVal = this.bufferLength;
+            this.bufferLength = 0;
+            return retVal;
+        }
     }
 
-    class RFUUDPDataInterface : IRFUDataInterface
+    class RFUUDPDataInterface : RFUDataInterface
     {
-        public event EventHandler<RFUDataReceivedEventArgs> RFUDataReceived;
         private UDPBroadcast udp;
         public RFUUDPDataInterface(int sendPort, int recvPort)
         {
@@ -38,15 +51,17 @@ namespace RFUInterface
             }
         }
 
-        public int Send(byte[] buffer, int count)
+        public override int Flush()
         {
-            return udp.Send(buffer, count);
+            udp.Send(this.buffer, this.bufferLength);
+
+            return base.Flush();
         }
     }
 
-    class RFUSerialDataInterface : IRFUDataInterface
+    class RFUSerialDataInterface : RFUDataInterface
     {
-        public event EventHandler<RFUDataReceivedEventArgs> RFUDataReceived;
+        //public event EventHandler<RFUDataReceivedEventArgs> RFUDataReceived;
         private SerialPort sp;
         public RFUSerialDataInterface(string comPort)
         {
@@ -67,10 +82,11 @@ namespace RFUInterface
             }
         }
 
-        public int Send(byte[] buffer, int count)
+        public override int Flush()
         {
-            sp.Write(buffer, 0, count);
-            return count;
+            sp.Write(this.buffer, 0, this.bufferLength);
+
+            return base.Flush();
         }
     }
 }
