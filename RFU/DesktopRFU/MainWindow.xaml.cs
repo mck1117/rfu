@@ -38,6 +38,7 @@ namespace UDPRfu
 
             // Pick one of these based on how you want to use
             RFU = new RFUInterface.RFUInterface("COM3");
+            RFU.SetDimmer(58, 24);
             //RFU = new RFUInterface.RFUInterface(1112, 1113);
         }
     }
